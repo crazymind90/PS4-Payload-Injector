@@ -1,6 +1,7 @@
 # PS4-Payload-Injector
 Payload injection app for mac "Based on Al-Azif's script" 
 
+- Default port is 9020 - you can change it in "sender.py" file
  
 ### ScreenShot
 
