@@ -50,6 +50,9 @@ def main():
     parser.add_argument('--payload', action='store',
                         default='', required=False,
                         help='The location of the payload')
+    parser.add_argument('--portnum', action='store',
+                        default='', required=False,
+                        help='Port num')
     args = parser.parse_args()
 
     if not args.ip and not args.payload:
@@ -81,13 +84,13 @@ def main():
                 ip = raw_input('Enter your PS4\'s IP Address: ')
                 if not re.match('^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$', ip):
                     ip = '0.0.0.0'
-            netcat(ip, 9020, content)
+            netcat(ip, int(args.portnum), content)
     elif args.ip and args.payload:
         try:
-            print('>> Sending "{}" to {}'.format(args.payload, args.ip))
+            print('>> Sending "{}" to {}:{}'.format(args.payload, args.ip, args.portnum))
             with open(os.path.join(args.payload), 'rb') as f:
                 content = f.read()
-                netcat(args.ip, 9020, content)
+                netcat(args.ip, int(args.portnum), content)
         except IOError:
             print('>> Could not find payload located at "{}"'.format(args.payload))
     else:
