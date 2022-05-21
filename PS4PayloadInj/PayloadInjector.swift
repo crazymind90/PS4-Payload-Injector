@@ -66,7 +66,6 @@ struct PayloadInjector : View {
                     
                     Button {
      
-                        
                 DispatchQueue.main.async {
                 let SenderPyth : String = Bundle.main.resourcePath! + "/sender.py"
 
